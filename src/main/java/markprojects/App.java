@@ -14,16 +14,22 @@ import java.io.BufferedInputStream;
 
 public class App {
     public static void main( String[] args ) throws Exception {
-        String symbol = "C";	//args[0];
-        //System.out.println("symbol: " + symbol);
+        String symbol = "C";
+
         String uri = buildURI(symbol, 
             new TradingDay(2015, 0, 1),		//January 1
             new TradingDay(2015, 7, 31));	//August 31
 
-        //System.out.println("uri: " + uri);
 
         String response = doCall(uri);
-        //System.out.println("response: " + response);
+
+        int lineIndex = 0;
+        for(String line : response.split("\n")) {
+           if(lineIndex > 0) {
+               Record r = new Record(symbol, line);
+           }
+           lineIndex++;
+        }
     }
 
 
