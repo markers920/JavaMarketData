@@ -15,15 +15,15 @@ import java.io.BufferedInputStream;
 public class App {
     public static void main( String[] args ) throws Exception {
         String symbol = "C";	//args[0];
-        System.out.println("symbol: " + symbol);
+        //System.out.println("symbol: " + symbol);
         String uri = buildURI(symbol, 
             new TradingDay(2015, 0, 1),		//January 1
             new TradingDay(2015, 7, 31));	//August 31
 
-        System.out.println("uri: " + uri);
+        //System.out.println("uri: " + uri);
 
         String response = doCall(uri);
-        System.out.println("response: " + response);
+        //System.out.println("response: " + response);
     }
 
 
