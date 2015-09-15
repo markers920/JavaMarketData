@@ -38,6 +38,9 @@ public class App {
         if(doWrite) {
             writeRecords(recordsFilename);
         }
+
+        
+        getRecords(true, "C");
     }
 
 
@@ -80,5 +83,23 @@ public class App {
         }
         out.close();
     }
+
+
+
+    //TODO: prob want to move these somwhere else
+    private static List<Record> getRecords(boolean filterSymbol, String symbol) {
+        List<Record> filteredRecords = new ArrayList<Record>();
+
+        for(Record r : records) {
+            if(filterSymbol && !r.getSymbol().equalsIgnoreCase(symbol)) {
+                continue;
+            }
+
+            filteredRecords.add(r);
+        }
+
+        return filteredRecords;
+    }
+
 
 }
