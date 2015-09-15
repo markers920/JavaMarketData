@@ -3,6 +3,9 @@ package markprojects;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.text.ParseException;
+import java.io.PrintWriter;
+//import java.io.BufferedReader;
+import java.io.IOException;
 
 public class Record {
 
@@ -30,6 +33,19 @@ public class Record {
         this.close    = Double.parseDouble(splitLine[4].trim());
         this.volume   = Double.parseDouble(splitLine[5].trim());
         this.adjClose = Double.parseDouble(splitLine[6].trim());
+    }
+
+    public Record(String line) throws ParseException {
+        String[] splitLine = line.split(",");
+
+        this.symbol = splitLine[0];
+        this.timestamp = DATE_FORMAT.parse(splitLine[1].trim()).getTime();
+        this.open     = Double.parseDouble(splitLine[2].trim());
+        this.high     = Double.parseDouble(splitLine[3].trim());
+        this.low      = Double.parseDouble(splitLine[4].trim());
+        this.close    = Double.parseDouble(splitLine[5].trim());
+        this.volume   = Double.parseDouble(splitLine[6].trim());
+        this.adjClose = Double.parseDouble(splitLine[7].trim());
 
         //System.out.println(line + "\n" + this.toString());
     }
@@ -37,6 +53,19 @@ public class Record {
     public String humanDateTime() {
         return DATE_FORMAT.format(new Date(this.timestamp));
     }
+
+    public void writeToFile(PrintWriter out) {
+        out.print(symbol + ",");
+        out.print(humanDateTime() + ",");	//human readable
+        out.print(open + ",");
+        out.print(high + ",");
+        out.print(low + ",");
+        out.print(close + ",");
+        out.print(volume + ",");
+        out.print(adjClose + ",");
+        out.print("\n");
+    }
+
 
     //TODO: use string builder, or string formatter
     public String toString() {
