@@ -1,9 +1,11 @@
 package markprojects;
 
-
+import java.util.List;
+import java.util.ArrayList;
 
 public class App {
 
+    private static List<Record> records = new ArrayList<Record>();
 
     public static void main( String[] args ) throws Exception {
         for(String symbol : Constants.SYMBOLS) {
@@ -17,6 +19,7 @@ public class App {
             for(String line : response.split("\n")) {
                if(lineIndex > 0) {
                    Record r = new Record(symbol, line);
+                   records.add(r);
                }
                lineIndex++;
             }
