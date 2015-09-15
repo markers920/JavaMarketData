@@ -10,35 +10,41 @@ import java.io.FileReader;
 
 public class App {
 
-    //TODO: pull out of args[]
-    private static final boolean doWrite = false;
-    private static final boolean readFromFile = true;
-    private static final String RECORDS_FILE = "records.txt";
-
     private static List<Record> records = new ArrayList<Record>();
 
     public static void main( String[] args ) throws Exception {
+        boolean readFromFile = Boolean.parseBoolean(args[0]);
+        boolean doWrite = Boolean.parseBoolean(args[1]);
+
+        String recordsFilename = null;
+        if(readFromFile || doWrite) {
+            recordsFilename = args[2];
+        }
+
         if(readFromFile) {
-           pullFromFile(); 
+            System.out.println("read from file");
+            pullFromFile(recordsFilename); 
         }
 
         else { //read from internet
+            System.out.println("read from yahoo");
             pullFromYahoo();
         }
 
 
+        System.out.println("records.size()" + records.size());
+
+
         if(doWrite) {
-            PrintWriter out = new PrintWriter(new FileWriter(RECORDS_FILE)); 
-            for(Record r : records) {
-                r.writeToFile(out);
-            }
-            out.close();
+            writeRecords(recordsFilename);
         }
     }
 
-    public static void pullFromFile() throws Exception {
+
+
+    public static void pullFromFile(String recordsFilename) throws Exception {
         records.clear();
-        BufferedReader in = new BufferedReader(new FileReader(RECORDS_FILE));
+        BufferedReader in = new BufferedReader(new FileReader(recordsFilename));
         String text;
         while (in.ready()) {
             text = in.readLine();
@@ -65,6 +71,14 @@ public class App {
                lineIndex++;
             }
         }//END for symbol
+    }
+
+    public static void writeRecords(String recordsFilename) throws Exception {
+        PrintWriter out = new PrintWriter(new FileWriter(recordsFilename)); 
+        for(Record r : records) {
+            r.writeToFile(out);
+        }
+        out.close();
     }
 
 }
