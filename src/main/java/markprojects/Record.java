@@ -50,6 +50,40 @@ public class Record {
         //System.out.println(line + "\n" + this.toString());
     }
 
+
+    public String getSymbol() {
+        return this.symbol;
+    }
+
+    public long getTimestamp() {
+        return this.timestamp;
+    }
+
+    public double getOpen() {
+        return this.open;
+    }
+
+    public double getHigh() {
+        return this.high;
+    }
+
+    public double getLow() {
+        return this.low;
+    }
+
+    public double getClose() {
+        return this.close;
+    }
+
+    public double getVolume() {
+        return this.volume;
+    }
+
+    public double getAdjClose() {
+        return this.adjClose;
+    }
+
+
     public String humanDateTime() {
         return DATE_FORMAT.format(new Date(this.timestamp));
     }
