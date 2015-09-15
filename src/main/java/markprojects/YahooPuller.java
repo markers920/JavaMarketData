@@ -36,7 +36,7 @@ public class YahooPuller {
         int response = httpClient.executeMethod(getMethod);
  
         if (response != 200) {
-            throw new Exception("HTTP problem, httpcode: " + response);
+            throw new Exception("HTTP problem, httpcode: " + response + "\n" + uri);
         }
  
         InputStream stream = getMethod.getResponseBodyAsStream();
