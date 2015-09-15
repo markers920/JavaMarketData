@@ -24,7 +24,7 @@ public class Constants {
         "	BIIB	", //	Biogen Idec
         "	BK	", //	Bank of New York
         "	BMY	", //	Bristol-Myers Squibb
-        "	BRK.B	", //	Berkshire Hathaway
+        //"	BRK.B	", //	Berkshire Hathaway
         "	C	", //	Citigroup Inc
         "	CAT	", //	Caterpillar Inc
         "	CL	", //	Colgate-Palmolive Co.
