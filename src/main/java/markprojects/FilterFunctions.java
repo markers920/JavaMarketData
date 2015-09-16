@@ -2,6 +2,7 @@ package markprojects;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.lang3.tuple.Pair;
 
 public class FilterFunctions {
     
@@ -65,4 +66,19 @@ public class FilterFunctions {
             throw new Exception("Bad Filter Type");
         }
     }
+
+    private static Pair<List<Record>, List<Record>> splitAtTimestamp(List<Record> records, long timestamp) {
+        List<Record> lessThan = new ArrayList<Record>();
+        List<Record> greaterThan = new ArrayList<Record>();
+
+        for(Record r : records) {
+            if(r.getTimestamp() < timestamp)
+                lessThan.add(r);
+            else
+                greaterThan.add(r);
+        }
+
+        return Pair.of(lessThan, greaterThan);
+    }
 }
+
