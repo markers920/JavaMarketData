@@ -67,7 +67,7 @@ public class FilterFunctions {
         }
     }
 
-    private static Pair<List<Record>, List<Record>> splitAtTimestamp(List<Record> records, long timestamp) {
+    public static Pair<List<Record>, List<Record>> splitAtTimestamp(List<Record> records, long timestamp) {
         List<Record> lessThan = new ArrayList<Record>();
         List<Record> greaterThan = new ArrayList<Record>();
 
