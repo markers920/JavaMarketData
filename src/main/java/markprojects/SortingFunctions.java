@@ -9,7 +9,7 @@ import static markprojects.Constants.*;
 
 public class SortingFunctions {
 
-    public Comparator timestampComparator = new RecordComparator(FILTER_TIMESTAMP);
+    public static final Comparator timestampComparator = new RecordComparator(FILTER_TIMESTAMP);
     
     static class RecordComparator implements Comparator<Record> {
         private int type;

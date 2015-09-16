@@ -2,6 +2,7 @@ package markprojects;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
 import org.apache.commons.lang3.tuple.Pair;
 import static markprojects.Constants.*;
 
@@ -68,6 +69,9 @@ public class FilterFunctions {
             else
                 greaterThan.add(r);
         }
+
+        Collections.sort(lessThan, SortingFunctions.timestampComparator);
+        Collections.sort(greaterThan, SortingFunctions.timestampComparator);
 
         return Pair.of(lessThan, greaterThan);
     }
