@@ -33,7 +33,7 @@ public class App {
         }
 
         
-        FilterFunctions.getRecords(records, true, "C");
+        System.out.println("records.size = " + FilterFunctions.filterBySymbol(records, "C").size());
     }
 
 }
