@@ -1,12 +1,12 @@
 package markprojects;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpMethod;
-import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.methods.GetMethod;
-import java.io.InputStream;
-import java.io.IOException;
-import java.io.BufferedInputStream;
 
 // borrowed heavily from :
 //    http://www.wikijava.org/wiki/Downloading_stock_market_quotes_from_Yahoo!_finance#Java_can_do_it

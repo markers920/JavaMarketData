@@ -1,11 +1,9 @@
 package markprojects;
 
+import java.io.PrintWriter;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.text.ParseException;
-import java.io.PrintWriter;
-//import java.io.BufferedReader;
-import java.io.IOException;
 
 public class Record {
 
@@ -22,35 +20,38 @@ public class Record {
 
 
     public Record(String sym, String line) throws ParseException {
-        this.symbol = sym;
-
         String[] splitLine = line.split(",");
+        for(int index = 0; index < splitLine.length; index++) {
+            splitLine[index] = splitLine[index].trim();
+        }
 
-        this.timestamp = DATE_FORMAT.parse(splitLine[0].trim()).getTime();
-        this.open     = Double.parseDouble(splitLine[1].trim());
-        this.high     = Double.parseDouble(splitLine[2].trim());
-        this.low      = Double.parseDouble(splitLine[3].trim());
-        this.close    = Double.parseDouble(splitLine[4].trim());
-        this.volume   = Double.parseDouble(splitLine[5].trim());
-        this.adjClose = Double.parseDouble(splitLine[6].trim());
+        setSymbol(sym);
+        setTimestamp(splitLine[0]);
+        setOpen(splitLine[1]);
+        setHigh(splitLine[2]);
+        setLow(splitLine[3]);
+        setClose(splitLine[4]);
+        setVolume(splitLine[5]);
+        setAdjClose(splitLine[6]);
     }
 
     public Record(String line) throws ParseException {
         String[] splitLine = line.split(",");
+        for(int index = 0; index < splitLine.length; index++) {
+            splitLine[index] = splitLine[index].trim();
+        }
 
-        this.symbol = splitLine[0];
-        this.timestamp = DATE_FORMAT.parse(splitLine[1].trim()).getTime();
-        this.open     = Double.parseDouble(splitLine[2].trim());
-        this.high     = Double.parseDouble(splitLine[3].trim());
-        this.low      = Double.parseDouble(splitLine[4].trim());
-        this.close    = Double.parseDouble(splitLine[5].trim());
-        this.volume   = Double.parseDouble(splitLine[6].trim());
-        this.adjClose = Double.parseDouble(splitLine[7].trim());
-
-        //System.out.println(line + "\n" + this.toString());
+        setSymbol(splitLine[0]);
+        setTimestamp(splitLine[1]);
+        setOpen(splitLine[2]);
+        setHigh(splitLine[3]);
+        setLow(splitLine[4]);
+        setClose(splitLine[5]);
+        setVolume(splitLine[6]);
+        setAdjClose(splitLine[7]);
     }
 
-
+    // get functions
     public String getSymbol() {
         return this.symbol;
     }
@@ -83,14 +84,74 @@ public class Record {
         return this.adjClose;
     }
 
-
-    public String humanDateTime() {
-        return DATE_FORMAT.format(new Date(this.timestamp));
+    
+    // set functions
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
     }
+    
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
+    }
+    
+    public void setTimestamp(String timestamp) throws ParseException {
+        setTimestamp(DATE_FORMAT.parse(timestamp).getTime());
+    }
+
+    public void setOpen(double open) {
+        this.open = open;
+    }
+    
+    public void setOpen(String open) {
+        setOpen(Double.parseDouble(open));
+    }
+
+    public void setHigh(double high) {
+        this.high = high;
+    }
+    
+    public void setHigh(String high) {
+        setHigh(Double.parseDouble(high));
+    }
+
+    public void setLow(double low) {
+        this.low = low;
+    }
+    
+    public void setLow(String low) {
+        setLow(Double.parseDouble(low));
+    }
+
+    public void setClose(double close) {
+        this.close = close;
+    }
+    
+    public void setClose(String close) {
+        setClose(Double.parseDouble(close));
+    }
+
+    public void setVolume(double volume) {
+        this.volume = volume;
+    }
+    
+    public void setVolume(String volume) {
+        setVolume(Double.parseDouble(volume));
+    }
+
+    public void setAdjClose(double adjClose) {
+        this.adjClose = adjClose;
+    }
+    
+    public void setAdjClose(String adjClose) {
+        setAdjClose(Double.parseDouble(adjClose));
+    }
+    
+
+    
 
     public void writeToFile(PrintWriter out) {
         out.print(symbol + ",");
-        out.print(humanDateTime() + ",");	//human readable
+        out.print(humanDateTime() + ",");    //human readable
         out.print(open + ",");
         out.print(high + ",");
         out.print(low + ",");
@@ -100,6 +161,11 @@ public class Record {
         out.print("\n");
     }
 
+    
+    // to string fucntions
+    public String humanDateTime() {
+        return DATE_FORMAT.format(new Date(this.timestamp));
+    }
 
     //TODO: use string builder, or string formatter
     public String toString() {
@@ -113,6 +179,7 @@ public class Record {
         b.append(adjClose + "/");
         return b.toString();
     }
+    
 }
 
 
