@@ -3,6 +3,8 @@ package markprojects;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpMethod;
@@ -59,6 +61,27 @@ public class YahooPuller {
         return sb.toString();
     }
 
+    public static List<Record> pullFromYahoo() throws Exception {
+        List<Record> records = new ArrayList<Record>();
+        
+        for(String symbol : Constants.SYMBOLS) {
+            symbol = symbol.trim();    //TODO: drop the trim when the list is cleaned up
+
+            String uri = YahooPuller.buildURI(symbol, Constants.START_DAY, Constants.END_DAY);
+
+            String response = YahooPuller.doCall(uri);
+
+            int lineIndex = 0;
+            for(String line : response.split("\n")) {
+               if(lineIndex > 0) {
+                   records.add(new Record(symbol, line));
+               }
+               lineIndex++;
+            }
+        }//END for symbol
+        
+        return records;
+    }
 }
 
 
