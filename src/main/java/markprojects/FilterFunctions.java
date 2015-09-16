@@ -3,18 +3,9 @@ package markprojects;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.lang3.tuple.Pair;
+import static markprojects.Constants.*;
 
 public class FilterFunctions {
-    
-    public static final int FILTER_SYMBOL = 0;
-    public static final int FILTER_TIMESTAMP = 1;
-    public static final int FILTER_OPEN = 2;
-    public static final int FILTER_HIGH = 3;
-    public static final int FILTER_LOW = 4;
-    public static final int FILTER_CLOSE = 5;
-    public static final int FILTER_VOLUME = 6;
-    public static final int FILTER_ADJCLOSE = 7;
-
     
     public static List<Record> filterBySymbol(List<Record> records, String symbol) {
         List<Record> filteredRecords = new ArrayList<Record>();

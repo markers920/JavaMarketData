@@ -2,6 +2,17 @@ package markprojects;
 
 public class Constants {
 
+    //TODO: rename these
+    public static final int FILTER_SYMBOL = 0;
+    public static final int FILTER_TIMESTAMP = 1;
+    public static final int FILTER_OPEN = 2;
+    public static final int FILTER_HIGH = 3;
+    public static final int FILTER_LOW = 4;
+    public static final int FILTER_CLOSE = 5;
+    public static final int FILTER_VOLUME = 6;
+    public static final int FILTER_ADJCLOSE = 7;
+
+
     public static final TradingDay START_DAY = new TradingDay(2015, 0, 1);     //January 1                            
     public static final TradingDay END_DAY = new TradingDay(2015, 7, 31);      //August 31
 
