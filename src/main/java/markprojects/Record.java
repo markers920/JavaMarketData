@@ -167,6 +167,14 @@ public class Record {
         return DATE_FORMAT.format(new Date(this.timestamp));
     }
 
+    public double getChangeValue() {
+        return this.close - this.open;
+    }
+
+    public double getChangePercentage() {
+        return getChangeValue() / this.open;
+    }
+
     //TODO: use string builder, or string formatter
     public String toString() {
         StringBuilder b = new StringBuilder();
