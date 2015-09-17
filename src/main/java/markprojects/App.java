@@ -1,7 +1,8 @@
 package markprojects;
 
 import java.util.List;
-
+import org.apache.commons.lang3.tuple.MutablePair;
+import java.util.Collections;
 
 public class App {
 
@@ -32,8 +33,29 @@ public class App {
             FileIO.writeRecords(records, recordsFilename);
         }
 
+
+        List<Record> records_C = FilterFunctions.filterBySymbol(records, "C");
+        //System.out.println("records.size = " + records_C.size());
+        //
+        //Pair<List<Record>, List<Record>> beforeAndAfter = FilterFunctions.splitAtTimestamp(records, 1435708800000l);
+        //System.out.println("records.size = " + beforeAndAfter.getLeft().size());
+        //System.out.println("records.size = " + beforeAndAfter.getRight().size());
+
+        List<MutablePair<Long,Double>> dailyChanges = TimeSeriesAnalysis.getDailyChange(records);
+        List<Double> values = FilterFunctions.getSeriesValues(dailyChanges, true);
+
+        TimeSeriesAnalysis.plotHistogram(values, 0.002, 100);
+        System.out.println("values mean = " + TimeSeriesAnalysis.getMeanOfValues(values));
+        System.out.println("min: " + Collections.min(values));
+        System.out.println("max: " + Collections.max(values));
         
-        System.out.println("records.size = " + FilterFunctions.filterBySymbol(records, "C").size());
+        /*TimeSeriesAnalysis.removeMeanFromValues(values);
+
+        TimeSeriesAnalysis.plotHistogram(values, 0.001, 50);
+        System.out.println("values mean = " + TimeSeriesAnalysis.getMeanOfValues(values));
+        System.out.println("min: " + Collections.min(values));
+        System.out.println("max: " + Collections.max(values));*/
+
     }
 
 }
