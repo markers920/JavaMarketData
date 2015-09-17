@@ -76,5 +76,32 @@ public class FilterFunctions {
         return Pair.of(lessThan, greaterThan);
     }
 
+    public List<Double> getSeriesValues(List<MutablePair<Long,Double>> series, boolean sort) {
+        List<Double> ret = new ArrayList<Double>();
+
+        for(MutablePair<Long,Double> p : series) {
+            ret.add(p.getRight());
+        }
+
+        if(sort)
+            Collections.sort(ret);
+
+        return ret;
+    }
+
+    public List<Long> getSeriesTimes(List<MutablePair<Long,Double>> series, boolean sort) {
+        List<Long> ret = new ArrayList<Long>();
+
+        for(MutablePair<Long,Double> p : series) {
+            ret.add(p.getLeft());
+        }
+
+        if(sort)
+            Collections.sort(ret);
+
+        return ret;
+    }
+
+
 }
 
