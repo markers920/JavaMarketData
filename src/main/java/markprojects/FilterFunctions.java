@@ -3,6 +3,7 @@ package markprojects;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
+import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import static markprojects.Constants.*;
 
@@ -76,7 +77,7 @@ public class FilterFunctions {
         return Pair.of(lessThan, greaterThan);
     }
 
-    public List<Double> getSeriesValues(List<MutablePair<Long,Double>> series, boolean sort) {
+    public static List<Double> getSeriesValues(List<MutablePair<Long,Double>> series, boolean sort) {
         List<Double> ret = new ArrayList<Double>();
 
         for(MutablePair<Long,Double> p : series) {
@@ -89,7 +90,7 @@ public class FilterFunctions {
         return ret;
     }
 
-    public List<Long> getSeriesTimes(List<MutablePair<Long,Double>> series, boolean sort) {
+    public static List<Long> getSeriesTimes(List<MutablePair<Long,Double>> series, boolean sort) {
         List<Long> ret = new ArrayList<Long>();
 
         for(MutablePair<Long,Double> p : series) {
