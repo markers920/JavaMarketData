@@ -44,18 +44,20 @@ public class App {
         List<MutablePair<Long,Double>> dailyChanges = TimeSeriesAnalysis.getDailyChange(records);
         List<Double> values = FilterFunctions.getSeriesValues(dailyChanges, true);
 
-        TimeSeriesAnalysis.plotHistogram(values, 0.002, 100);
+        //TimeSeriesAnalysis.plotHistogram(values, 0.002, 100);
         System.out.println("values mean = " + TimeSeriesAnalysis.getMeanOfValues(values));
         System.out.println("min: " + Collections.min(values));
         System.out.println("max: " + Collections.max(values));
         
-        /*TimeSeriesAnalysis.removeMeanFromValues(values);
+        //TimeSeriesAnalysis.removeMeanFromValues(values);
+        //TimeSeriesAnalysis.plotHistogram(values, 0.001, 50);
+        //System.out.println("values mean = " + TimeSeriesAnalysis.getMeanOfValues(values));
+        //System.out.println("min: " + Collections.min(values));
+        //System.out.println("max: " + Collections.max(values));
 
-        TimeSeriesAnalysis.plotHistogram(values, 0.001, 50);
-        System.out.println("values mean = " + TimeSeriesAnalysis.getMeanOfValues(values));
-        System.out.println("min: " + Collections.min(values));
-        System.out.println("max: " + Collections.max(values));*/
-
+        for(int h = 0; h < 10; h++) {
+            System.out.println("autocoorrelation(" + h + ") = " + TimeSeriesAnalysis.sampleAutoCorrelation(values, h));
+        }
     }
 
 }

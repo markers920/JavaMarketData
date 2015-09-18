@@ -84,6 +84,28 @@ public class TimeSeriesAnalysis {
             System.out.println();
        }
     }
+
+    //assumes in time order, and time between samples is always 1
+    public static double sampleAutoCovariance(List<Double> values, int h) {
+        h = Math.abs(h);
+        double mean = getMeanOfValues(values);
+        double sum = 0.0;
+        for(int i = 0; i < values.size()-h; i++) {
+            int idx = i-1;
+            sum += (values.get(i+h)-mean)*(values.get(i)-mean);
+        }
+        return sum / values.size();
+    }
+
+    public static double sampleAutoCorrelation(List<Double> values, int h) {
+        if(h==0)
+            return 1.0;
+
+        double gammaH = sampleAutoCovariance(values,h);
+        double gamma0 = sampleAutoCovariance(values,0);
+
+        return gammaH / gamma0;
+    }
 }
 
 
